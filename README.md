@@ -23,11 +23,11 @@ Additionally, we will create an EventBridge Rule that will monitor for Crawler s
 
 <img width="404" alt="Screen Shot 2022-12-29 at 7 31 41 PM" src="https://user-images.githubusercontent.com/65970260/210023631-fe9b90e1-7dbd-4849-8bb3-4420248063e4.png">
 
-(note competition year is not integer because it has some string values)
+Note, competition year is not integer because it has some string values.
 
 - You should see a table like this appear under the Resources tab on the left-hand side
 
-![](RackMultipart20221230-1-322jnf_html_bf440a385fdfa819.png)
+<img width="219" alt="Screen Shot 2022-12-29 at 7 32 57 PM" src="https://user-images.githubusercontent.com/65970260/210023680-888ba067-9a88-4e9a-b5c3-c5d5bec73295.png">
 
 - Create an S3 Gateway Endpoint in your Redshift cluster's VPC (which can be found in your cluster's Network and security settings) so that the cluster can be connected to the S3 bucket.
 - Create an "All TCP" inbound rule for your Redshift cluster's VPC security group (which can also be found in the cluster's Network and security settings).
@@ -57,14 +57,14 @@ Additionally, we will create an EventBridge Rule that will monitor for Crawler s
 
 - In the EventBridge Console, create a rule. In the Event Pattern section, use a Custom Pattern. In the Event Pattern code box, write JSON for what the rule should be listening for: a "Success" state change for your **S3 Crawler**. Such JSON in my case was as follows (code also in GitHub Repo):
 
-![](RackMultipart20221230-1-322jnf_html_c01ca3aba45471ff.png)
+<img width="255" alt="Screen Shot 2022-12-29 at 7 33 35 PM" src="https://user-images.githubusercontent.com/65970260/210023702-123a0261-ee64-4564-ae72-984d4037db6d.png">
 
 Be sure to change "DataSourceS3" to your S3 crawler's crawler name.
 
 - Create a Lambda Function using the desired Python runtime and your IAM role.
   - After creating the function, go to the "Function Code" section and write a handler that will start a job (make sure to hit deploy after writing the code). For my case, (also in GitHub Repo) I replaced lambda\_function.py with
 
-![](RackMultipart20221230-1-322jnf_html_783df8150d64cd5f.png)
+<img width="482" alt="Screen Shot 2022-12-29 at 7 34 00 PM" src="https://user-images.githubusercontent.com/65970260/210023718-99f4f745-8291-43ee-ad27-eaadba403453.png">
 
 Be sure to replace "fifa\_attendees\_job" with the name of your job (which we will create later).
 
@@ -82,7 +82,7 @@ Be sure to replace "fifa\_attendees\_job" with the name of your job (which we wi
 - Run your job.
   - Once the job is complete, you can test its success by querying the database in your redshift cluster. For example,
 
-![](RackMultipart20221230-1-322jnf_html_3c5024c2fb2ae870.png)
+<img width="180" alt="Screen Shot 2022-12-29 at 7 34 37 PM" src="https://user-images.githubusercontent.com/65970260/210023747-c7b24051-54be-4ca9-9f0b-bbb7fdd3a733.png">
 
 If the query returns the data held in the S3 bucket, then the data has been successfully moved to your Redshift cluster.
 
