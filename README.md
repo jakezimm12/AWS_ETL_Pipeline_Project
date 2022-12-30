@@ -21,7 +21,7 @@ Additionally, we will create an EventBridge Rule that will monitor for Crawler s
 - Create an S3 Bucket and drop your data into it.
 - Create a Redshift Cluster and use the Query Editor to create a table (that will be empty until data is transferred to it) in your cluster with the correct schema for your data. For my dataset's case, I used the following command:
 
-![](RackMultipart20221230-1-322jnf_html_ed36bc48f8710d38.png)
+<img width="404" alt="Screen Shot 2022-12-29 at 7 31 41 PM" src="https://user-images.githubusercontent.com/65970260/210023631-fe9b90e1-7dbd-4849-8bb3-4420248063e4.png">
 
 (note competition year is not integer because it has some string values)
 
